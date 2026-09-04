@@ -1,3 +1,4 @@
+# Build dist (where I need the typescript compiler)
 FROM node:22-alpine AS build
 WORKDIR /app
 COPY package*.json .
@@ -8,6 +9,7 @@ COPY tsconfig.json tsconfig.json
 
 RUN npm run build
 
+# Install only production deps
 FROM node:22-alpine AS deps
 WORKDIR /app
 COPY package*.json .
